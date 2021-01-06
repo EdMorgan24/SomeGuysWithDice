@@ -1,5 +1,5 @@
 {
-  "homepage": "https://edmorgan24.github.io/someGuysWithDice/"
+  "homepage": "https://edmorgan24.github.io/someGuysWithDice/",
   "devDependencies": {
     "concurrently": "^5.2.0",
     "dotenv": "^8.2.0",
