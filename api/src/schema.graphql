@@ -1,0 +1,57 @@
+type Player {
+    name: String
+    characters: [Character] @relation(name: "PLAYED_BY", direction: IN)
+    noOfCharacters: Int! @cypher(statement:"MATCH (this)<-[:PLAYED_BY]-(c:Character)  RETURN count(*)")
+}
+
+type Character {
+    name: String
+    level: Int
+    alive: String
+    player: [Player] @relation(name: "PLAYED_BY", direction: OUT)
+    race: [Race] @relation(name: "IS_A", direction: OUT)
+    class: [Class] @relation(name: "IS_A", direction: OUT)
+    campaign: [Campaign] @relation(name: "PLAYED_IN", direction: OUT)
+}
+
+type Race {
+    name: String
+    characters: [Character] @relation(name: "IS_A", direction: IN)
+}
+
+type RaceCount {
+  name: String!
+  count: Int!
+}
+
+type Class {
+    name: String
+    characters: [Character] @relation(name: "IS_A", direction: IN)
+}
+
+type ClassCount {
+  name: String!
+  count: Int!
+}
+
+type Campaign {
+    name: String
+    characters: [Character] @relation(name: "PLAYED_IN", direction: IN)
+    dm: [Player] @relation(name: "DM_BY", direction: OUT)
+}
+
+type Query {
+  Player(name: String, _id: String, first: Int, offset: Int, orderBy: [_PlayerOrdering]): [Player]
+  Campaign(name: String, _id: String, first: Int, offset: Int, orderBy: [_CampaignOrdering]): [Campaign]
+  Character(name: String, level: Int, _id: String, first: Int, offset: Int, orderBy: [_CharacterOrdering]): [Character]
+  Race(name: String, _id: String, first: Int, offset: Int, orderBy: [_RaceOrdering]): [Race]
+  Class(name: String, _id: String, first: Int, offset: Int, orderBy: [_ClassOrdering]): [Class]
+  characterCount: Int! @cypher(statement: "MATCH (c:Character) RETURN COUNT(c)")
+  characterDeathCount:  Int! @cypher(statement: "MATCH (c:Character) WHERE c.alive='No' RETURN COUNT(c)")
+  classCount: [ClassCount]  @cypher(
+      statement: "MATCH (c:Class)<-[r:IS_A]-() RETURN {name: c.name, count: count(r)}"
+    )
+  raceCount: [ClassCount]  @cypher(
+      statement: "MATCH (a:Race)<-[r:IS_A]-() RETURN {name: a.name, count: count(r)}"
+    )
+}
