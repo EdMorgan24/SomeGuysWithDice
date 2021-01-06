@@ -1,13 +1,15 @@
 {
+  "homepage": "https://edmorgan24.github.io/someGuysWithDice/"
   "devDependencies": {
     "concurrently": "^5.2.0",
+    "dotenv": "^8.2.0",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.3",
     "eslint-plugin-react": "^7.20.0",
     "execa": "^4.0.2",
+    "gh-pages": "^3.1.0",
     "grandstack": "^0.0.7",
-    "dotenv": "^8.2.0",
     "husky": ">=4",
     "lint-staged": ">=10",
     "prettier": "^2.0.5",
@@ -19,12 +21,11 @@
     "build": "node scripts/build.js",
     "format": "find . -name \"*.js\" | grep -v node_modules | grep -v build | xargs prettier --write",
     "format:log": "find . -name \"*.js\" | grep -v node_modules | grep -v build | xargs prettier",
-    "inferschema:write": "node scripts/inferSchema.js"
+    "inferschema:write": "node scripts/inferSchema.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.js": [
