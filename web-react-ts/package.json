@@ -1,4 +1,5 @@
 {
+  "homepage": "https://edmorgan24.github.io/someGuysWithDice/",
   "name": "web-react-ts",
   "version": "0.1.0",
   "private": true,
@@ -22,13 +23,16 @@
     "@types/react-dom": "^16.9.0",
     "@types/react-router-dom": "^5.1.5",
     "@types/recharts": "^1.8.14",
+    "gh-pages": "^3.1.0",
     "typescript": "~3.7.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
