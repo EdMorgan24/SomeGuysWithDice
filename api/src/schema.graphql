@@ -36,13 +36,14 @@ type ClassCount {
 
 type Campaign {
     name: String
+    current: String
     characters: [Character] @relation(name: "PLAYED_IN", direction: IN)
     dm: [Player] @relation(name: "DM_BY", direction: OUT)
 }
 
 type Query {
   Player(name: String, _id: String, first: Int, offset: Int, orderBy: [_PlayerOrdering]): [Player]
-  Campaign(name: String, _id: String, first: Int, offset: Int, orderBy: [_CampaignOrdering]): [Campaign]
+  Campaign(name: String, current: String, _id: String, first: Int, offset: Int, orderBy: [_CampaignOrdering]): [Campaign]
   Character(name: String, level: Int, _id: String, first: Int, offset: Int, orderBy: [_CharacterOrdering]): [Character]
   Race(name: String, _id: String, first: Int, offset: Int, orderBy: [_RaceOrdering]): [Race]
   Class(name: String, _id: String, first: Int, offset: Int, orderBy: [_ClassOrdering]): [Class]

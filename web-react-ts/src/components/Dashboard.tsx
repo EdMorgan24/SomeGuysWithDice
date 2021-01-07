@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
 import Title from './Title'
 
+import CurrentCampaignInfo from './CurrentCampaignInfo'
 import CharacterCount from './CharacterCount'
 import ClassStats from './ClassStats'
 import RaceStats from './RaceStats'
@@ -32,13 +33,13 @@ export default function Dashboard() {
     <React.Fragment>
       <Grid container spacing={4}>
         {/* Ratings Chart */}
-        <Grid item xs={12} md={8} lg={7}>
+        <Grid item xs={12} md={11} lg={8}>
           <Paper className={fixedHeightPaper}>
-            <CharacterCount />
+            <CurrentCampaignInfo />
           </Paper>
         </Grid>
         {/* User Count */}
-        <Grid item xs={12} md={4} lg={5}>
+        <Grid item xs={12} md={1} lg={4}>
           <Paper className={fixedHeightPaper}>
             <CharacterCount />
           </Paper>

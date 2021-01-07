@@ -71,7 +71,7 @@ export default function ClassStats() {
   if (error) return <p>Error</p>
   return (
     <React.Fragment>
-      <Title>Class Distribution</Title>
+      <Title>Overall Class Distribution</Title>
       <Typography component="p" >
         {loading ? 'Loading...' : mostUsedClassCalculation(data)}
       </Typography>

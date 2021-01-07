@@ -72,7 +72,7 @@ export default function ClassStats() {
   if (error) return <p>Error</p>
   return (
     <React.Fragment>
-      <Title>Race Distribution</Title>
+      <Title>Overall Race Distribution</Title>
       <Typography component="p" >
         {loading ? 'Loading...' : mostUsedRaceCalculation(data)}
       </Typography>
