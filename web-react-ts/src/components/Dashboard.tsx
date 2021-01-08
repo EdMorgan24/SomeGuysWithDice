@@ -6,6 +6,7 @@ import clsx from 'clsx'
 
 import CurrentCampaignInfo from './CurrentCampaignInfo'
 import CharacterCount from './CharacterCount'
+import OneShotStats from './OneShotStats'
 import ClassStats from './ClassStats'
 import RaceStats from './RaceStats'
 export default function Dashboard() {
@@ -32,15 +33,21 @@ export default function Dashboard() {
     <React.Fragment>
       <Grid container spacing={4}>
         {/* Ratings Chart */}
-        <Grid item xs={12} md={11} lg={8}>
+        <Grid item xs={12}>
           <Paper className={fixedHeightPaper}>
             <CurrentCampaignInfo />
           </Paper>
         </Grid>
-        {/* User Count */}
+        {/* Character Count */}
         <Grid item xs={12} md={1} lg={4}>
           <Paper className={fixedHeightPaper}>
             <CharacterCount />
+          </Paper>
+        </Grid>
+        {/* One Shot Count */}
+        <Grid item xs={12} md={1} lg={4}>
+          <Paper className={fixedHeightPaper}>
+            <OneShotStats />
           </Paper>
         </Grid>
         {/* Recent Reviews */}

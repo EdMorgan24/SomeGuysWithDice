@@ -41,9 +41,31 @@ type Campaign {
     dm: [Player] @relation(name: "DM_BY", direction: OUT)
 }
 
+type System {
+    name: String
+}
+
+type SystemCount {
+  name: String!
+  count: Int!
+}
+
+type One_Shot {
+    name: String
+    system: [System] @relation(name: "BELONGS_TO", direction: OUT)
+    characters: [Character] @relation(name: "PLAYED_IN", direction: IN)
+    dm: [Player] @relation(name: "DM_BY", direction: OUT)
+}
+
+type One_ShotCount {
+  name: String!
+  count: Int!
+}
+
 type Query {
   Player(name: String, _id: String, first: Int, offset: Int, orderBy: [_PlayerOrdering]): [Player]
   Campaign(name: String, current: String, _id: String, first: Int, offset: Int, orderBy: [_CampaignOrdering]): [Campaign]
+  One_Shot(name: String, _id: String, first: Int, offset: Int, orderBy: [_One_ShotOrdering]): [One_Shot]
   Character(name: String, level: Int, _id: String, first: Int, offset: Int, orderBy: [_CharacterOrdering]): [Character]
   Race(name: String, _id: String, first: Int, offset: Int, orderBy: [_RaceOrdering]): [Race]
   Class(name: String, _id: String, first: Int, offset: Int, orderBy: [_ClassOrdering]): [Class]
@@ -52,7 +74,11 @@ type Query {
   classCount: [ClassCount]  @cypher(
       statement: "MATCH (c:Class)<-[r:IS_A]-() RETURN {name: c.name, count: count(r)}"
     )
-  raceCount: [ClassCount]  @cypher(
+  raceCount: [RaceCount]  @cypher(
       statement: "MATCH (a:Race)<-[r:IS_A]-() RETURN {name: a.name, count: count(r)}"
+    )
+  oneShotCount: Int! @cypher(statement: "MATCH (o:One_Shot) RETURN COUNT(o)")
+  oneShotSystemCount: [SystemCount]  @cypher(
+      statement: "MATCH (a:System)<-[r:BELONGS_TO]-(o:One_Shot) RETURN {name: a.name, count: count(r)}"
     )
 }
