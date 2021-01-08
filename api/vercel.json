@@ -1,5 +1,5 @@
 {
   "version": 1,
   "builds": [{ "src": "dist/app.js", "use": "@now/node" }],
-  "routes": [{ "src": "/", "dest": "dist/index.js" }]
+  "routes": [{ "src": "/graphql", "dest": "dist/index.js" }]
 }
