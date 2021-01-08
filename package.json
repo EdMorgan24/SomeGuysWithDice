@@ -25,12 +25,12 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "husky": {
-  },
+  "husky": {},
   "lint-staged": {
     "*.js": [
       "prettier --write",
       "eslint --fix"
     ]
-  }
+  },
+  "dependencies": {}
 }
