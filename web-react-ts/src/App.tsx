@@ -4,6 +4,7 @@ import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 
 import PlayerList from './components/PlayerList'
 import CampaignList from './components/CampaignList'
+import OneShotList from './components/OneShotList'
 import CharacterList from './components/CharacterList'
 
 import clsx from 'clsx'
@@ -223,6 +224,15 @@ export default function App() {
               </ListItem>
             </Link>
 
+            <Link to="/oneShots" className={classes.navLink}>
+              <ListItem button>
+                <ListItemIcon>
+                  <PeopleIcon />
+                </ListItemIcon>
+                <ListItemText primary="One Shots" />
+              </ListItem>
+            </Link>
+
             <Link to="/characters" className={classes.navLink}>
               <ListItem button>
                 <ListItemIcon>
@@ -241,6 +251,7 @@ export default function App() {
               <Route exact path="/" component={Dashboard} />
               <Route exact path="/players" component={PlayerList} />
               <Route exact path="/campaigns" component={CampaignList} />
+              <Route exact path="/oneShots" component={OneShotList} />
               <Route exact path="/characters" component={CharacterList} />
             </Switch>
 
