@@ -3,7 +3,6 @@ import { useTheme } from '@material-ui/core/styles'
 import { Grid, Paper } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
-import Title from './Title'
 
 import CurrentCampaignInfo from './CurrentCampaignInfo'
 import CharacterCount from './CharacterCount'

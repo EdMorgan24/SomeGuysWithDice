@@ -1,24 +1,18 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import {
   Table,
   TableBody,
   TableCell,
-  TablePagination,
   SortDirection,
   TableHead,
   TableRow,
   Tooltip,
-  Paper,
   TableSortLabel,
-  TextField,
 } from '@material-ui/core'
 import Title from './Title'
 import { useQuery, gql } from '@apollo/client'
-
-import ClassChart from './ClassChart'
 
 const useStyles = makeStyles({
   depositContext: {
@@ -63,21 +57,11 @@ const GET_CURRENT_CAMPAIGN = gql`
 export default function CurrentCampaignInfo() {
   const [order, setOrder] = React.useState<'asc' | 'desc'>('asc')
   const [orderBy, setOrderBy] = React.useState('name')
-  const [filterState, setFilterState] = React.useState({ usernameFilter: '' })
   const classes = useStyles()
 
   const { loading, error, data } = useQuery(GET_CURRENT_CAMPAIGN, {
     variables: { current: 'Yes' }
   })
-
-  const handleFilterChange = (filterName: any) => (event: any) => {
-    const val = event.target.value
-
-    setFilterState((oldFilterState) => ({
-      ...oldFilterState,
-      [filterName]: val,
-    }))
-  }
 
   const handleSortRequest = (property: any) => {
     const newOrderBy = property

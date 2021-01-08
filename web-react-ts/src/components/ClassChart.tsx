@@ -1,10 +1,8 @@
 import React from 'react'
-import { useTheme } from '@material-ui/core/styles'
 import {
-  ResponsiveContainer, BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+  ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
 import { useQuery, gql } from '@apollo/client'
-import Title from './Title'
 
 const GET_DATA_QUERY = gql`
   {
@@ -15,7 +13,6 @@ const GET_DATA_QUERY = gql`
   }
 `
 export default function ClassChart() {
-  const theme = useTheme()
 
   const { loading, error, data } = useQuery(GET_DATA_QUERY)
   if (error) return <p>Error</p>

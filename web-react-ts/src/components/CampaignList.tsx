@@ -102,10 +102,10 @@ function CampaignList(props: any) {
 
     console.log(characterArry)
 
-    characterArry.map((n: any) => {
-      if (n.alive === 'No') {
-        deathCount += 1
-      }})
+    characterArry.filter((n:any) => n.alive=== 'No').map((dead: any) => {
+      deathCount += 1
+      return 0
+    })
 
     return deathCount
   }
